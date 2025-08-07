@@ -1,6 +1,5 @@
 services:
   remnawave-telegram-management-bot:
-    build: .
     container_name: remnawave-telegram-management-bot
     image: remnawave-telegram-management-bot:latest
     restart: unless-stopped

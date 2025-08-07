@@ -15,6 +15,15 @@ This bot is meant to be used when you're not a large scale seller, but rather a 
 
 ## Installation
 
+Copy `.env` and `docker-compose.yml` on your system:
+
+```bash
+wget https://raw.githubusercontent.com/hzhexee/remnawave-telegram-management-bot/refs/heads/main/docker-compose.yml -O docker-compose.yml
+wget https://raw.githubusercontent.com/hzhexee/remnawave-telegram-management-bot/refs/heads/main/.env -O .env
+```
+
+Then, edit the `.env` file to set your environment variables.
+
 ### Setting up Admin Access
 
 Configure the `ADMIN_USER_ID` environment variable in your `.env` file:
