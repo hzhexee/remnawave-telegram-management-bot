@@ -17,8 +17,8 @@ services:
       - ./logs:/app/logs
     networks:
       # Если бот запускается не на VPS где стоит панель
-      # - bot-network
-      - remnawave-network
+      - bot-network
+      # - remnawave-network
     # Настройки для health check
     healthcheck:
       test: ["CMD", "python", "-c", "import requests; requests.get('https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getMe')"]
@@ -28,12 +28,12 @@ services:
       start_period: 40s
 
 networks:
-  remnawave-network:
-    external: true
+  # remnawave-network:
+  #   external: true
     # Или если нужно создать локально:
     # driver: bridge
-  # bot-network:
-  #   driver: bridge
+  bot-network:
+    driver: bridge
 
 volumes:
   logs:
