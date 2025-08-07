@@ -1,7 +1,7 @@
 services:
   remnawave-telegram-management-bot:
     container_name: remnawave-telegram-management-bot
-    image: remnawave-telegram-management-bot:latest
+    image: hzhexee/remnawave-telegram-management-bot:latest
     restart: unless-stopped
     environment:
       # Переменные окружения из .env файла
