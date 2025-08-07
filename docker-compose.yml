@@ -3,22 +3,12 @@ services:
     container_name: remnawave-telegram-management-bot
     image: hzhexee/remnawave-telegram-management-bot:latest
     restart: unless-stopped
-    environment:
-      # Переменные окружения из .env файла
-      - API_TOKEN=${API_TOKEN}
-      - REMNAWAVE_BASE_URL=${REMNAWAVE_BASE_URL}
-      - COOKIES=${COOKIES}
-      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
-      - ADMIN_USER_ID=${ADMIN_USER_ID}
     env_file:
       - .env
-    volumes:
-      # Опциональный volume для логов
-      - ./logs:/app/logs
     networks:
+      - remnawave-network
       # Если бот запускается не на VPS где стоит панель
-      - bot-network
-      # - remnawave-network
+      # - bot-network
     # Настройки для health check
     healthcheck:
       test: ["CMD", "python", "-c", "import requests; requests.get('https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getMe')"]
@@ -28,13 +18,8 @@ services:
       start_period: 40s
 
 networks:
-  # remnawave-network:
-  #   external: true
-    # Или если нужно создать локально:
-    # driver: bridge
-  bot-network:
-    driver: bridge
-
-volumes:
-  logs:
-    driver: local
+  remnawave-network:
+    external: true
+  # Или если запускается не на VPS, где стоит панель
+  # bot-network:
+  #   driver: bridge
