@@ -8,13 +8,23 @@ class UsersAPI:
         self.token = token or os.getenv("API_TOKEN", "")
         self.base_url = base_url or os.getenv("REMNAWAVE_BASE_URL", "")
         self.cookies = cookies or json.loads(os.getenv("COOKIES", "{}"))
+        self.is_local = os.getenv("IS_LOCAL_NETWORK", "false").lower() == "true"
         self._client = None
     
     def _get_headers(self):
-        return {
+        headers = {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + self.token
         }
+        
+        # Добавляем заголовки для локальной сети
+        if self.is_local:
+            headers.update({
+                "X-Forwarded-Proto": "https",
+                "X-Forwarded-For": "127.0.0.1"
+            })
+        
+        return headers
     
     async def __aenter__(self):
         self._client = httpx.AsyncClient(cookies=self.cookies)

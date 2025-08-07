@@ -24,6 +24,21 @@ wget https://raw.githubusercontent.com/hzhexee/remnawave-telegram-management-bot
 
 Then, edit the `.env` file to set your environment variables.
 
+### Important Configuration Notes
+
+**Local Network Setup**
+If your bot runs on the same network as the panel (e.g., using Docker Compose), set:
+```bash
+IS_LOCAL_NETWORK=true
+```
+This enables proper forwarding headers (`X-Forwarded-Proto` and `X-Forwarded-For`) which help prevent connection issues like "Server disconnected without sending a response."
+
+**Remote Setup**
+If your bot runs on a different server than the panel, set:
+```bash
+IS_LOCAL_NETWORK=false
+```
+
 ### Setting up Admin Access
 
 Configure the `ADMIN_USER_ID` environment variable in your `.env` file:
