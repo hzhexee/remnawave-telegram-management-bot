@@ -1,5 +1,7 @@
 # Remnawave Telegram Management Bot
 
+[README на русском](README-ru.md)
+
 A `Telegram` bot that provides administrative capabilities for managing users and system resources through Telegram interface. With this bot, administrators can:
 
 - **User Management**: Create, delete, enable/disable user accounts with custom or quick setup
