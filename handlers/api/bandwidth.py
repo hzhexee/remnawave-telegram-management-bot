@@ -67,21 +67,3 @@ class BandwidthAPI:
             "get",
             f"{self.base_url}/api/nodes/usage/realtime"
         )
-
-    async def get_nodes_usage_by_range(self, start_time, end_time):
-        """
-        Получает статистику использования трафика по узлам за указанный период времени.
-        
-        Args:
-            start_time (str): Время начала периода.
-            end_time (str): Время окончания периода.
-            
-        Returns:
-            dict: Ответ API с информацией о трафике.
-        """
-        return await self._make_request(
-            "get",
-            f"{self.base_url}/api/nodes/usage/range",
-            params={"start": start_time, "end": end_time}
-        )
-        
